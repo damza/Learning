@@ -53,7 +53,7 @@ namespace IndividualTaxCalculator
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=TaxCalculation}/{action=Index}/{id?}");
             });
         }
     }

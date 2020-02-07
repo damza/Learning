@@ -19,6 +19,7 @@ namespace IndividualTaxCalculator.Controllers
         
         public IActionResult Index()
         {
+            ViewBag.Title = "Calculate Income Tax";
             ViewBag.Message = "Hello, this is a tax calculation tool!";
 
             return View();

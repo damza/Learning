@@ -1,9 +1,15 @@
-﻿
+﻿@model TaxCalculation
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = @ViewBag.Title;
 }
 
-<h1>Index</h1>
+<h1>@ViewBag.Title</h1>
 
 <h2>@ViewBag.Message</h2>
+
+@Html.LabelFor(m => m.PostalCode)
+@Html.TextBoxFor(m => m.PostalCode)
+
+@Html.LabelFor(m => m.AnnualIncome)
+@Html.TextBoxFor(m => m.AnnualIncome)
 
