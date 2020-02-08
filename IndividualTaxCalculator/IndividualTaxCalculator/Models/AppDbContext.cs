@@ -14,5 +14,7 @@ namespace IndividualTaxCalculator.Models
         }
 
         public DbSet<TaxCalculation> TaxCalculations { get; set; }
+
+        public DbSet<TaxType> TaxTypes { get; set; }
     }
 }
