@@ -7,9 +7,18 @@
 
 <h2>@ViewBag.Message</h2>
 
-@Html.LabelFor(m => m.PostalCode)
-@Html.TextBoxFor(m => m.PostalCode)
-
-@Html.LabelFor(m => m.AnnualIncome)
-@Html.TextBoxFor(m => m.AnnualIncome)
-
+<div>
+    <table>
+        <tr>
+            <td>@Html.LabelFor(m => m.PostalCode): </td>
+            <td>@Html.DropDownList("PostalCodes")</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.AnnualIncome): </td>
+            <td>@Html.TextBoxFor(m => m.AnnualIncome)</td>
+        </tr>
+    </table>
+</div>
+<div class="bg-light">
+    <input type="submit" id="submitTaxCalc" class="btn-dark" />
+</div>

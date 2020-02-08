@@ -16,7 +16,7 @@ namespace IndividualTaxCalculator.Models
         public string PostalCode { get; set; }
 
         [Required]
-        [DisplayName("Annual Incode")]
+        [DisplayName("Annual Income")]
         [DataType(DataType.Currency)]
         public decimal AnnualIncome { get; set; }
         public decimal TaxResult { get; set; }
