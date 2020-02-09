@@ -7,18 +7,28 @@
 
 <h2>@ViewBag.Message</h2>
 
-<div>
-    <table>
-        <tr>
-            <td>@Html.LabelFor(m => m.PostalCode): </td>
-            <td>@Html.DropDownList("PostalCodes")</td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(m => m.AnnualIncome): </td>
-            <td>@Html.TextBoxFor(m => m.AnnualIncome)</td>
-        </tr>
-    </table>
-</div>
-<div class="bg-light">
-    <input type="submit" id="submitTaxCalc" class="btn-dark" />
-</div>
+<form asp-action="Submit" asp-controller="TaxCalculation" method="post" class="form-check" role="form">
+    <div class="form-group">
+        <label asp-for="PostalCode" class="col-md-2 custom-control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="PostalCode" class="form-control" />
+            <span asp-validation-for="PostalCode" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AnnualIncome" class="col-md-2 custom-control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="AnnualIncome" class="form-control" />
+            <span asp-validation-for="AnnualIncome" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-5">
+            <input type="submit" id="submitTaxCalc" class="btn-dark" value="Submit" />
+        </div>
+    </div>
+
+
+</form>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,7 @@ namespace IndividualTaxCalculator.Models
 {
     public class TaxCalculation
     {
+        [BindNever]
         public int Id { get; set; }
 
         [Required]
@@ -17,6 +19,7 @@ namespace IndividualTaxCalculator.Models
         public string PostalCode { get; set; }
 
         [Required]
+        [Range(1, double.MaxValue, ErrorMessage = "Please enter a value greater than {1}")]
         [DisplayName("Annual Income")]
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(18,4)")]

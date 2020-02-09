@@ -49,5 +49,10 @@ namespace IndividualTaxCalculator.BusinessLogic
             
             return list;
         }
+
+        public IEnumerable<TaxType> GetAllPostalCodeTypes()
+        {
+            return _taxType.GetAllTaxTypes();
+        }
     }
 }

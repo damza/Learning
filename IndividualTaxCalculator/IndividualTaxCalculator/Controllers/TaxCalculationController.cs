@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IndividualTaxCalculator.BusinessLogic;
+using IndividualTaxCalculator.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -24,50 +25,46 @@ namespace IndividualTaxCalculator.Controllers
         {
             ViewBag.Title = "Calculate Income Tax";
             ViewBag.Message = "Hello, this is a tax calculation tool!";
-            ViewData["PostalCodes"] = _dataLayer.GetAllPostalCodes();
-
-            
+                       
 
             return View();
         }
 
-        //private static List<SelectListItem> GetPostalCodes()
-        //{
-        //    List<SelectListItem> items = new List<SelectListItem>
-        //    {
-        //        new SelectListItem
-        //        {
-        //            Text = "Select Postal Code",
-        //            Value = "0",
-        //            Selected = true
-        //        },
+        [HttpPost]
+        public IActionResult Submit(TaxCalculation model)
+        {
+            if (ModelState.IsValid)
+            {
+                var postalCodes = _dataLayer.GetAllPostalCodeTypes();
 
-        //        new SelectListItem
-        //        {
-        //            Text = "7441",
-        //            Value = "7441"
-        //        },
+                if (!postalCodes.Where(p => p.PostalCode == model.PostalCode).Any())
+                {
+                    ModelState.AddModelError("PostalCode", "Postal Code is not catered for, please enter postal code from this selection (7441, A100, 7000, 1000).");
+                    return View("Index", model);
+                }
+                else
+                {
+                    //call api to calculate tax and insert in database
+                    _dataLayer.AddNewTaxCalculationResult(model);
+                }
 
-        //        new SelectListItem
-        //        { 
-        //            Text = "A100", 
-        //            Value = "A100" 
-        //        },
+                var postalCode = "";
+                var annualIncome = "";
+                var taxResult = "";
+                return RedirectToAction("TaxCalculationSubmitted", new { postalCode, annualIncome, taxResult });
+            }
+            else
+            {
+                return View("Index", model);
+            }
+        }
 
-        //        new SelectListItem
-        //        { 
-        //            Text = "7000", 
-        //            Value = "7000" 
-        //        },
+        public IActionResult TaxCalculationSubmitted(string postalCode, decimal annualIncome, decimal taxResult)
+        {
+            ViewBag.Title = "Tax Calculation Submitted";
+            ViewBag.Message = $"Hello, thank you for submitting your tax calculation! The result for the annual income {annualIncome} for postal code {postalCode} is {taxResult}";
 
-        //        new SelectListItem
-        //        { 
-        //            Text = "1000", 
-        //            Value = "1000" 
-        //        }
-        //    };
-
-        //    return items;
-        //}
+            return View();
+        }
     }
 }

@@ -31,9 +31,9 @@ namespace IndividualTaxCalculator
 
             services.AddTransient<ITaxTypeRepository, TaxTypeRepository>();
             services.AddTransient<ITaxCalculationRepository, TaxCalculationRepository>();
+            services.AddTransient<IDataLayer, DataLayer>();
 
             services.AddSingleton<ICalculateTax, CalculateTax>();
-            services.AddTransient<IDataLayer, DataLayer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

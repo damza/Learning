@@ -11,6 +11,8 @@ namespace IndividualTaxCalculator.BusinessLogic
     {
         IEnumerable<SelectListItem> GetAllPostalCodes();
 
+        IEnumerable<TaxType> GetAllPostalCodeTypes();
+
         void AddNewTaxCalculationResult(TaxCalculation taxCalculation);
     }
 }
