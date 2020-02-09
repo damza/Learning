@@ -7,11 +7,11 @@ namespace IndividualTaxCalculator.BusinessLogic
 {
     public interface ICalculateTax
     {
-        decimal CalculateProgressiveTax(string postalCode, decimal annualIncome);
+        decimal CalculateFlatValueTax(decimal annualIncome);
 
-        decimal CalculateFlatValueTax(string postalCode, decimal annualIncome);
+        decimal CalculateFlatRateTax(decimal annualIncome);
 
-        decimal CalculateRateTax(string postalCode, decimal annualIncome);
+        decimal CalculateProgressiveTax(decimal annualIncome);
 
     }
 }
