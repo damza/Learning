@@ -56,11 +56,17 @@ namespace IndividualTaxCalculator
 
             app.UseAuthorization();
 
+            app.UseStatusCodePages();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=TaxCalculation}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "api",
+                    pattern: "{controller=TaxServices}/{id?}");
             });
         }
     }
